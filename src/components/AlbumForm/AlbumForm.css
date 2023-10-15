@@ -1,0 +1,29 @@
+.album-cta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.album-form-heading {
+  font-size: 3.2rem;
+}
+
+.album-box {
+  display: flex;
+  justify-content: space-evenly;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid #000;
+  text-align: center;
+  align-items: center;
+  gap: 4.2rem;
+}
+.album-input {
+  font-size: 1.8rem;
+  border: none;
+  border-bottom: 1px solid black;
+}
+.album-input:focus {
+  outline: none;
+}
