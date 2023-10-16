@@ -12,6 +12,10 @@
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
+.album {
+  min-width: 17rem;
+}
+
 .helper {
   position: relative;
 }
