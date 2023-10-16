@@ -21,6 +21,7 @@ export default function AlbumForm({ db, setDoc, doc, allAlbums }) {
   // State to handle Modal
   const [isModalOpen, setIsModalOpen] = useState(false);
   const textAreaRef = useRef();
+
   const allAlbumNames = allAlbums.map((item) => item.id);
 
   const handleOpen = () => {

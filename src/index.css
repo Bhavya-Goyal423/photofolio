@@ -3,14 +3,11 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+  color: black;
 }
 html {
   font-size: 62.5%;
-  /* background-color: #fff; */
 }
 body {
-  width: 100vw;
-  height: 100vh;
   background-color: #343a40;
-  overflow-x: hidden;
 }

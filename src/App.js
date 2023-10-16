@@ -4,7 +4,14 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import { useState, useEffect } from "react";
 import { db } from "./config/firebaseInit";
-import { doc, setDoc, onSnapshot, collection } from "firebase/firestore";
+import {
+  doc,
+  setDoc,
+  onSnapshot,
+  collection,
+  deleteDoc,
+  getDoc,
+} from "firebase/firestore";
 import AlbumsList from "./components/AlbumsList/AlbumsList";
 
 function App() {
@@ -39,7 +46,14 @@ function App() {
           <CircularProgress />
         </Box>
       )}
-      <AlbumsList allAlbums={allAlbums} />
+      <AlbumsList
+        allAlbums={allAlbums}
+        doc={doc}
+        deleteDoc={deleteDoc}
+        db={db}
+        getDoc={getDoc}
+        setDoc={setDoc}
+      />
     </div>
   );
 }
