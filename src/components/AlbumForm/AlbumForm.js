@@ -17,10 +17,11 @@ const style = {
   p: 4,
 };
 
-export default function AlbumForm({ db, setDoc, doc }) {
+export default function AlbumForm({ db, setDoc, doc, allAlbums }) {
   // State to handle Modal
   const [isModalOpen, setIsModalOpen] = useState(false);
   const textAreaRef = useRef();
+  const allAlbumNames = allAlbums.map((item) => item.id);
 
   const handleOpen = () => {
     setIsModalOpen(true);
@@ -36,9 +37,14 @@ export default function AlbumForm({ db, setDoc, doc }) {
       toast.error("Album name cannot be empty", config);
       return;
     }
+
+    if (allAlbumNames.includes(albumName)) {
+      toast.error("Album with this name already exist", config);
+      return;
+    }
     try {
       const albumRef = doc(db, "albums", albumName);
-      setDoc(albumRef, { images: ["weee"] });
+      setDoc(albumRef, { images: [] });
     } catch (e) {
       console.log(e);
       throw new Error(e);

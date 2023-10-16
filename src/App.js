@@ -8,30 +8,22 @@ import { doc, setDoc, onSnapshot, collection } from "firebase/firestore";
 
 function App() {
   const [allAlbums, setAllAlbums] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  console.log(allAlbums);
 
   const getData = async () => {
-    const myPromise = new Promise((resolve, reject) => {
-      try {
-        setLoading(true);
-        const albumNames = [];
-
-        onSnapshot(collection(db, "albums"), (snapshot) => {
-          snapshot.forEach((al) => {
-            albumNames.push(al.id);
-          });
-          resolve(albumNames);
-        });
-      } catch (error) {
-        reject(error);
-      }
-    });
-    myPromise
-      .then((result) => {
+    try {
+      onSnapshot(collection(db, "albums"), (snapshot) => {
+        const albumNames = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          photos: doc.data().images.length,
+        }));
+        setAllAlbums(albumNames);
         setLoading(false);
-        setAllAlbums(result);
-      })
-      .catch((error) => console.log(error));
+      });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
 
   useEffect(() => {
@@ -40,15 +32,12 @@ function App() {
 
   return (
     <div className="wrapper">
-      <AlbumForm db={db} doc={doc} setDoc={setDoc} />
+      <AlbumForm db={db} doc={doc} setDoc={setDoc} allAlbums={allAlbums} />
       {loading && (
         <Box sx={{ display: "flex", alignSelf: "center" }}>
           <CircularProgress />
         </Box>
       )}
-      {allAlbums.map((al, idx) => (
-        <p key={idx}>{al}</p>
-      ))}
     </div>
   );
 }
