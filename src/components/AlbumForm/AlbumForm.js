@@ -45,6 +45,7 @@ export default function AlbumForm({ db, setDoc, doc, allAlbums }) {
     try {
       const albumRef = doc(db, "albums", albumName);
       setDoc(albumRef, { images: [] });
+      toast.success("Album created successfully", config);
     } catch (e) {
       console.log(e);
       throw new Error(e);

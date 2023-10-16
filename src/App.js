@@ -5,18 +5,19 @@ import Box from "@mui/material/Box";
 import { useState, useEffect } from "react";
 import { db } from "./config/firebaseInit";
 import { doc, setDoc, onSnapshot, collection } from "firebase/firestore";
+import AlbumsList from "./components/AlbumsList/AlbumsList";
 
 function App() {
   const [allAlbums, setAllAlbums] = useState([]);
   const [loading, setLoading] = useState(true);
-  console.log(allAlbums);
 
   const getData = async () => {
     try {
       onSnapshot(collection(db, "albums"), (snapshot) => {
         const albumNames = snapshot.docs.map((doc) => ({
           id: doc.id,
-          photos: doc.data().images.length,
+          count: doc.data().images.length,
+          images: doc.data().images,
         }));
         setAllAlbums(albumNames);
         setLoading(false);
@@ -38,6 +39,7 @@ function App() {
           <CircularProgress />
         </Box>
       )}
+      <AlbumsList allAlbums={allAlbums} />
     </div>
   );
 }
