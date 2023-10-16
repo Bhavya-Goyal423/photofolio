@@ -27,3 +27,6 @@
 .album-input:focus {
   outline: none;
 }
+.toast {
+  font-size: 1.4rem;
+}

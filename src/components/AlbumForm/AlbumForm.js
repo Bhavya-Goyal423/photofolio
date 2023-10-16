@@ -5,6 +5,10 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 // React Imports
 import { useState, useRef } from "react";
+// React Toaster
+import { ToastContainer, toast } from "react-toastify";
+import { config } from "../../config/toasterConfig";
+import "react-toastify/dist/ReactToastify.css";
 
 // Style for Modal Box
 const style = {
@@ -27,14 +31,14 @@ export default function AlbumForm({ db, setDoc, doc }) {
   };
 
   const addAlbum = async () => {
-    const albumName = textAreaRef.current.value;
+    const albumName = textAreaRef.current.value.toLowerCase();
     if (!albumName) {
-      handleClose();
+      toast.error("Album name cannot be empty", config);
       return;
     }
     try {
       const albumRef = doc(db, "albums", albumName);
-      setDoc(albumRef, { images: [] }, { merge: true });
+      setDoc(albumRef, { images: ["weee"] });
     } catch (e) {
       console.log(e);
       throw new Error(e);
@@ -78,6 +82,7 @@ export default function AlbumForm({ db, setDoc, doc }) {
           </Button>
         </Box>
       </Modal>
+      <ToastContainer />
     </div>
   );
 }
