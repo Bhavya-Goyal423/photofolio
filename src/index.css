@@ -8,8 +8,23 @@
   color: #fff;
 }
 html {
+  /* background-color: #fff; */
   font-size: 62.5%;
 }
 body {
   background-color: #151515;
+  overflow: hidden;
+}
+
+/* !688 px   */
+@media (width<43em) {
+  html {
+    font-size: 56.25%;
+  }
+}
+/* !480 px  */
+@media (width<30em) {
+  html {
+    font-size: 50%;
+  }
 }

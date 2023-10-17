@@ -116,3 +116,27 @@
   font-size: 1.6rem;
   color: #999999;
 }
+
+/* ! 1120px  */
+@media (width < 70em) {
+  .grid--col-5 {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+/* !960px  */
+
+@media (width < 60em) {
+  .grid--col-5 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+/* !600px  */
+@media (width < 37em) {
+  .grid--col-5 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .grid {
+    column-gap: 20%;
+  }
+}

@@ -73,9 +73,8 @@ export default function ImageList({ allImages, handleDelete }) {
       <div className="main-grid">
         <div className="grid-1">
           {arr1.map((el) => (
-            <div className="img-helper">
+            <div className="img-helper" key={el}>
               <img
-                key={el}
                 className="img"
                 src={el}
                 alt=""
@@ -101,9 +100,8 @@ export default function ImageList({ allImages, handleDelete }) {
         </div>
         <div className="grid-2">
           {arr2.map((el) => (
-            <div className="img-helper">
+            <div className="img-helper" key={el}>
               <img
-                key={el}
                 className="img"
                 src={el}
                 alt=""
@@ -129,9 +127,8 @@ export default function ImageList({ allImages, handleDelete }) {
         </div>
         <div className="grid-3">
           {arr3.map((el) => (
-            <div className="img-helper">
+            <div className="img-helper" key={el}>
               <img
-                key={el}
                 className="img"
                 src={el}
                 alt=""

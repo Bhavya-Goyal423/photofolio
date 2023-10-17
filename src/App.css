@@ -13,3 +13,11 @@
   display: flex;
   justify-content: center;
 }
+
+/* !960 px */
+@media (width < 60em) {
+  .wrapper {
+    padding: 0 4.2rem;
+    padding-top: 6rem;
+  }
+}

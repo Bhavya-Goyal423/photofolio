@@ -34,3 +34,10 @@
   font-size: 1.4rem;
   color: #000;
 }
+
+/* !688 px   */
+@media (width<43em) {
+  .album-input {
+    width: 15rem;
+  }
+}
