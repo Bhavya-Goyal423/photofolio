@@ -1,7 +1,12 @@
 import "./ImageList.css";
 import ImageGallery from "react-image-gallery";
+import { useState, useRef } from "react";
 
-export default function ImageList({ allImages, selectedAlbum }) {
+export default function ImageList({ allImages }) {
+  const [selected, setSelected] = useState(null);
+  const [crsl, setcrsl] = useState(false);
+  const imageGalleryRef = useRef();
+
   const arr1 = [];
   const arr2 = [];
   const arr3 = [];
@@ -21,46 +26,82 @@ export default function ImageList({ allImages, selectedAlbum }) {
   const handleimg = (e) => {
     const src = e.target.src;
     const index = allImages.indexOf(src);
+    setcrsl(true);
+    setSelected(index);
+    setTimeout(() => {
+      imageGalleryRef.current.toggleFullScreen();
+    }, 0);
   };
 
-  console.log(images);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      setcrsl(false);
+      setSelected(null);
+    }
+  });
 
   return (
-    <div className="main-grid">
-      <ImageGallery items={images} />;
-      <div className="grid-1">
-        {arr1.map((el, idx) => (
-          <img
-            key={el}
-            className="img"
-            src={el}
-            alt=""
-            onClick={(e) => handleimg(e)}
+    <>
+      {crsl && (
+        <div className="crsl">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 512 512"
+            className="close-icon"
+          >
+            <path
+              d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"
+              fill="currentColor"
+            />
+          </svg>
+          <ImageGallery
+            items={images}
+            startIndex={selected}
+            showFullscreenButton={false}
+            useBrowserFullscreen={false}
+            showPlayButton={false}
+            ref={imageGalleryRef}
+            additionalClass="caro"
           />
-        ))}
+        </div>
+      )}
+      <div className="main-grid">
+        <div className="grid-1">
+          {arr1.map((el) => (
+            <img
+              key={el}
+              className="img"
+              src={el}
+              alt=""
+              onClick={(e) => handleimg(e)}
+            />
+          ))}
+        </div>
+        <div className="grid-2">
+          {arr2.map((el) => (
+            <img
+              key={el}
+              className="img"
+              src={el}
+              alt=""
+              onClick={(e) => handleimg(e)}
+            />
+          ))}
+        </div>
+        <div className="grid-3">
+          {arr3.map((el) => (
+            <img
+              key={el}
+              className="img"
+              src={el}
+              alt=""
+              onClick={(e) => handleimg(e)}
+            />
+          ))}
+        </div>
       </div>
-      <div className="grid-2">
-        {arr2.map((el, idx) => (
-          <img
-            key={el}
-            className="img"
-            src={el}
-            alt=""
-            onClick={(e) => handleimg(e)}
-          />
-        ))}
-      </div>
-      <div className="grid-3">
-        {arr3.map((el, idx) => (
-          <img
-            key={el}
-            className="img"
-            src={el}
-            alt=""
-            onClick={(e) => handleimg(e)}
-          />
-        ))}
-      </div>
-    </div>
+    </>
   );
 }
