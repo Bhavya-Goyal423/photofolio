@@ -41,3 +41,8 @@
     width: 15rem;
   }
 }
+@media (width<23em) {
+  .album-form-heading {
+    font-size: 2.4rem;
+  }
+}

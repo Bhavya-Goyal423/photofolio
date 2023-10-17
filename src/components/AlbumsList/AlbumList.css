@@ -1,5 +1,6 @@
 .margin-top-90px {
   margin-top: 9rem;
+  margin-bottom: 9rem;
 }
 
 .grid {
@@ -138,5 +139,19 @@
 
   .grid {
     column-gap: 20%;
+    row-gap: 6rem;
+  }
+}
+/* !480px  */
+@media (width < 23em) {
+  .grid--col-5 {
+    grid-template-columns: 1fr;
+  }
+
+  .grid {
+    column-gap: 20%;
+    row-gap: 6rem;
+    max-width: 25rem;
+    margin: 6rem auto;
   }
 }

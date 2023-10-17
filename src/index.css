@@ -27,3 +27,9 @@ body {
     font-size: 50%;
   }
 }
+/* !380 px  */
+@media (width<23em) {
+  html {
+    font-size: 43.75%;
+  }
+}
