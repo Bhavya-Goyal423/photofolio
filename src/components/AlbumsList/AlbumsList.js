@@ -14,6 +14,7 @@ export default function AlbumsList({
   db,
   getDoc,
   setDoc,
+  selectAlbum,
 }) {
   return (
     <div className="margin-top-90px grid grid--col-5">
@@ -27,13 +28,23 @@ export default function AlbumsList({
           allAlbums={allAlbums}
           getDoc={getDoc}
           setDoc={setDoc}
+          selectAlbum={selectAlbum}
         />
       ))}
     </div>
   );
 }
 
-function Album({ data, doc, deleteDoc, db, getDoc, allAlbums, setDoc }) {
+function Album({
+  data,
+  doc,
+  deleteDoc,
+  db,
+  getDoc,
+  allAlbums,
+  setDoc,
+  selectAlbum,
+}) {
   const [isOptionsClicked, setIsOptionsClicked] = useState(false);
   const [edit, setEdit] = useState(false);
   const nameTextRef = useRef();
@@ -82,11 +93,11 @@ function Album({ data, doc, deleteDoc, db, getDoc, allAlbums, setDoc }) {
       <div className="helper">
         <div className="stack stack-1"></div>
         <div className="stack stack-2"></div>
-        <div className="album-img-box">
+        <div className="album-img-box" onClick={() => selectAlbum(data.id)}>
           <div className="scale-helper">
             <img
               className={`${data.count < 1 ? "no-image" : ""} album-img`}
-              src={data.count < 1 ? "/default.jpg" : data.images.at(0)}
+              src={data.count < 1 ? "/default.jpg" : data.images.at(-1)}
               alt={`${data.id}`}
             />
           </div>

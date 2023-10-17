@@ -13,10 +13,23 @@ import {
   getDoc,
 } from "firebase/firestore";
 import AlbumsList from "./components/AlbumsList/AlbumsList";
+import ImageForm from "./components/ImageForm/ImageForm";
 
 function App() {
   const [allAlbums, setAllAlbums] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedAlbum, setSelectedAlbum] = useState(null);
+  const [isAlbumSelected, setIsAlbumSelected] = useState(false);
+
+  const selectAlbum = (name) => {
+    setSelectedAlbum(name);
+    setIsAlbumSelected(true);
+  };
+
+  const handleBack = () => {
+    setSelectedAlbum(null);
+    setIsAlbumSelected(false);
+  };
 
   const getData = async () => {
     try {
@@ -40,20 +53,32 @@ function App() {
 
   return (
     <div className="wrapper">
-      <AlbumForm db={db} doc={doc} setDoc={setDoc} allAlbums={allAlbums} />
-      {loading && (
+      {!isAlbumSelected && (
+        <AlbumForm db={db} doc={doc} setDoc={setDoc} allAlbums={allAlbums} />
+      )}
+      {loading && !isAlbumSelected && (
         <Box sx={{ display: "flex", alignSelf: "center" }}>
           <CircularProgress />
         </Box>
       )}
-      <AlbumsList
-        allAlbums={allAlbums}
-        doc={doc}
-        deleteDoc={deleteDoc}
-        db={db}
-        getDoc={getDoc}
-        setDoc={setDoc}
-      />
+      {!isAlbumSelected && (
+        <AlbumsList
+          allAlbums={allAlbums}
+          doc={doc}
+          deleteDoc={deleteDoc}
+          db={db}
+          getDoc={getDoc}
+          setDoc={setDoc}
+          selectAlbum={selectAlbum}
+        />
+      )}
+      {isAlbumSelected && (
+        <ImageForm
+          selectedAlbum={selectedAlbum}
+          handleBacK={handleBack}
+          allAlbums={allAlbums}
+        />
+      )}
     </div>
   );
 }

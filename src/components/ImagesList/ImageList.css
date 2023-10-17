@@ -1,0 +1,20 @@
+.main-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 3rem;
+  align-items: start;
+  max-width: 120rem;
+  margin: 0 auto;
+  margin-top: 9rem;
+}
+.img {
+  width: 100%;
+  cursor: pointer;
+}
+.grid-1,
+.grid-2,
+.grid-3 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 3rem;
+}
