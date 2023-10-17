@@ -9,7 +9,6 @@
 }
 .img {
   width: 100%;
-  cursor: pointer;
 }
 .grid-1,
 .grid-2,
@@ -17,4 +16,18 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   row-gap: 3rem;
+  margin-bottom: 9rem;
+}
+.img-helper {
+  position: relative;
+  cursor: pointer;
+}
+.del-icon {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  cursor: pointer;
+}
+.del-icon path {
+  color: red;
 }

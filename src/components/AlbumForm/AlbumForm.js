@@ -78,6 +78,7 @@ export default function AlbumForm({ db, setDoc, doc, allAlbums }) {
             className="album-input"
             placeholder="Album Name"
             ref={textAreaRef}
+            style={{ color: "black" }}
           />
 
           <Button

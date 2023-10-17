@@ -61,6 +61,7 @@ function Album({
 
   const handleDelete = async (name) => {
     await deleteDoc(doc(db, "albums", name));
+    toast.success("Album Deleted");
   };
 
   const handleEdit = (name) => {
@@ -85,6 +86,7 @@ function Album({
       await deleteDoc(doc(db, "albums", localStorage.getItem("name")));
       const ref = doc(db, "albums", newName);
       setDoc(ref, docSnap.data());
+      toast.success("Album Edited", config);
     }
   };
 
